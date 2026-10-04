@@ -1,0 +1,43 @@
+{
+	"schemaVersion": 1,
+	"id": "tan_rrv",
+	"version": "${version}",
+	"name": "Tough as Nails RRV",
+	"description": "Adds Reliable Recipe Viewer support for Tough as Nails",
+	"authors": [
+		"QueDoom"
+	],
+	"contact": {
+		"homepage": "https://quedoom.com/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/tan_rrv/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.quedoom.tanrrv.ToughAsNailsRRV"
+		],
+		"fabric-datagen": [
+			"net.quedoom.tanrrv.TANRRVDataGenerator"
+		],
+		"rrv_client": [
+			"net.quedoom.tanrrv.rrv.TANRRVClientIntegration"
+		],
+		"rrv": [
+			"net.quedoom.tanrrv.rrv.TANRRVIntegration"
+		]
+	},
+	"mixins": [
+		"tas_rrv.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*",
+		"toughasnails": "21.11.0.6",
+		"rrv": "8.10.9",
+		"quet": "2.1.5"
+	}
+}

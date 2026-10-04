@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "net.quedoom.tanrrv.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"mixins": [
+		"WaterPurifierRecipeResultAccessor"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}
