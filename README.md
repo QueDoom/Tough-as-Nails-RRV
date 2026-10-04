@@ -1,9 +1,9 @@
 # Tough as Nails RRV
 
-## Setup
+Tough as Nails currently doesn't have any RRV support; so I added it!
 
-For setup instructions, please see the [Fabric Documentation page](https://docs.fabricmc.net/develop/getting-started/creating-a-project#setting-up) related to the IDE that you are using.
+One recipe explaining how the Rain Collector works.
+Recipes that tell you what items can go in the Thermoregulator.
+Recipes that tell you what items can be purified and what filters to use.
 
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+Tough as Nails has a village profession, I'm doing that tomorrow :)
