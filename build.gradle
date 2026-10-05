@@ -1,6 +1,16 @@
 plugins {
 	id 'net.fabricmc.fabric-loom' version "${loom_version}"
 	id 'maven-publish'
+	id "com.modrinth.minotaur" version "2.+"
+}
+
+def dotenv = [:]
+def envFile = file('.env')
+if (envFile.exists()) {
+	envFile.eachLine { line ->
+		def m = line =~ /^\s*([^#=\s]+)\s*=\s*(.*?)\s*$/
+		if (m) dotenv[m[0][1]] = m[0][2]
+	}
 }
 
 repositories {
@@ -16,6 +26,31 @@ repositories {
 		filter {
 			includeGroupAndSubgroups("cc.cassian")
 		}
+	}
+}
+
+java {
+	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+	// if it is present.
+	// If you remove this line, sources will not be generated.
+	withSourcesJar()
+	withJavadocJar()
+
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+}
+
+modrinth {
+	token = dotenv['MODRINTH_TOKEN'] ?: System.getenv("MODRINTH_TOKEN") // Remember to have the MODRINTH_TOKEN environment variable set or else this will fail - just make sure it stays private!
+	projectId = project.namespace // This can be the project ID or the slug. Either will work!
+	versionNumber = project.version // You don't need to set this manually. Will fail if Modrinth has this version already
+	versionType = "release" // This is the default -- can also be `beta` or `alpha`
+	uploadFile = tasks.jar // With Loom, this MUST be set to `remapJar` instead of `jar`!
+	additionalFiles = [tasks.sourcesJar]
+	gameVersions = [project.minecraft_version] // Must be an array, even with only one version
+	loaders = ["fabric"] // Must also be an array - no need to specify this if you're using Loom or ForgeGradle
+	dependencies { // A special DSL for creating dependencies
+		required.project "fabric-api"
 	}
 }
 
